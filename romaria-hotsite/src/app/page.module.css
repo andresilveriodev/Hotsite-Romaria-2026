@@ -1,0 +1,960 @@
+﻿.page {
+  background: #f6eedf;
+  color: #25140b;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 24px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #e8d3a0 url("/figma-assets/header-bg.png") center/cover no-repeat;
+  border-bottom: 1px solid rgba(126, 29, 26, 0.15);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto;
+  max-width: 1366px;
+  padding: 10px 24px;
+}
+
+.headerLogo {
+  width: 190px;
+  max-width: 100%;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #18130b;
+}
+
+.counterBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 81px;
+  padding: 16px 24px;
+  background: #7e1d1a;
+  color: #fff;
+  text-align: center;
+}
+
+.counterBar p {
+  font-size: clamp(1.5rem, 4vw, 3.2rem);
+  line-height: 1;
+}
+
+.heroSection {
+  background: #d7b26b;
+}
+
+.heroImage,
+.handsDivider,
+.paperTop,
+.paperBottom {
+  display: block;
+  width: 100%;
+}
+
+.heroImage {
+  min-height: 380px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.handsDivider {
+  margin-top: -2px;
+}
+
+.mottoSection {
+  display: flex;
+  justify-content: center;
+  padding: 24px 24px 18px;
+  background: #f8f1e6;
+}
+
+.mottoImage {
+  width: min(649px, 100%);
+}
+
+.scheduleSection {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 88px;
+  background: linear-gradient(rgba(246, 238, 223, 0.92), rgba(246, 238, 223, 0.92)), url("/figma-assets/fundo2.jpg") center/cover no-repeat;
+}
+
+.arch {
+  position: absolute;
+  top: 0;
+  width: 95px;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.archLeft {
+  left: 0;
+  transform: scaleX(-1);
+}
+
+.archRight {
+  right: 0;
+}
+
+.sectionTitleDark {
+  margin-bottom: 28px;
+  text-align: center;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 400;
+  color: #7e1d1a;
+}
+
+.filterRow,
+.logoSlots,
+.storeButtons,
+.footerLogos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.filterRow {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.datePickerBar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.datePickerTrigger {
+  min-height: 54px;
+  min-width: 260px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #7e1d1a;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filterPill,
+.dayCard,
+.pointCard,
+.linkButton,
+.galleryButton,
+.prayerButton,
+.ctaLink,
+.secondaryLink,
+.datePickerTrigger,
+.datePickerItem {
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.filterPill {
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #d9b65b;
+  color: #7e1d1a;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filterPillActive,
+.dayCardActive {
+  background: #7e1d1a;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(217, 182, 91, 0.6);
+}
+
+.scheduleBlocks {
+  display: grid;
+  gap: 24px;
+}
+
+.scheduleBlock h3 {
+  margin-bottom: 14px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #7e1d1a;
+}
+
+.scheduleList {
+  display: grid;
+  gap: 12px;
+}
+
+.scheduleItem {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 22px 26px;
+  border-radius: 9px;
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.scheduleTime {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.scheduleItem h4 {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+}
+
+.scheduleItem small {
+  display: block;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.datePickerOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(22, 13, 8, 0.7);
+}
+
+.datePickerPanel {
+  width: min(640px, 100%);
+  max-height: min(80vh, 720px);
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff7eb;
+}
+
+.datePickerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(126, 29, 26, 0.16);
+}
+
+.datePickerHeader h3 {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #7e1d1a;
+}
+
+.datePickerHeader button {
+  border: 0;
+  background: transparent;
+  color: #7e1d1a;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.datePickerList {
+  display: grid;
+  gap: 10px;
+  max-height: calc(min(80vh, 720px) - 82px);
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.datePickerItem {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid rgba(126, 29, 26, 0.14);
+  border-radius: 12px;
+  background: #fff;
+  color: #7e1d1a;
+  cursor: pointer;
+}
+
+.datePickerLabel {
+  font-weight: 700;
+}
+
+.datePickerMeta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.videoSection,
+.dualBannerSection,
+.voxSection,
+.appSection {
+  background: #7e1d1a;
+}
+
+.videoSection,
+.musicSection,
+.historySection,
+.mapSection,
+.adSection {
+  padding: 56px 0;
+}
+
+.videoGrid,
+.dualBannerGrid,
+.historyGrid,
+.mapGrid,
+.appGrid,
+.musicGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.mediaCard,
+.storyCard,
+.donationCard,
+.historyCard,
+.historyDonationCard,
+.musicCard,
+.memberCard,
+.voxInfoCard,
+.voxDonationCard,
+.appCard,
+.modalCard {
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.mediaCard {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mediaCard h3,
+.musicCard h3,
+.memberCard h3,
+.liveCard :global(h3) {
+  margin-bottom: 16px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  color: #fff;
+}
+
+.embedFrame,
+.liveCard :global(div:last-child) {
+  overflow: hidden;
+  border: 18px solid #d9b65b;
+  border-radius: 21px;
+  background: #17202f;
+  aspect-ratio: 16 / 9;
+}
+
+.embedFrame iframe,
+.liveCard :global(video),
+.liveCard :global(iframe) {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.liveCard :global(div:last-child) {
+  position: relative;
+}
+
+.paperTop {
+  transform: scaleY(-1);
+}
+
+.dualBannerGrid,
+.appGrid {
+  padding: 42px 0;
+}
+
+.storyCard,
+.donationCard,
+.historyCard,
+.historyDonationCard,
+.voxInfoCard,
+.voxDonationCard,
+.appCard {
+  position: relative;
+  min-height: 430px;
+}
+
+.storyCard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 24px;
+  padding: 34px;
+  background: linear-gradient(90deg, #6d1716 0%, #8f2723 65%, #6d1716 100%);
+  color: #fff;
+}
+
+.storyCard h2,
+.appCard h2,
+.donationCopy h2 {
+  margin-bottom: 18px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 400;
+}
+
+.storyCard h3,
+.voxInfoCard h3 {
+  margin-bottom: 18px;
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.storyCard img,
+.galleryCard img,
+.footerTop img,
+.footerLogos img,
+.modalGallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storyCard img {
+  object-fit: contain;
+}
+
+.linkButton,
+.ctaLink,
+.secondaryLink,
+.prayerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 11px;
+  background: #d9b65b;
+  color: #7e1d1a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondaryLink {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.donationCard {
+  background: radial-gradient(circle at 20% 30%, rgba(217, 182, 91, 0.28), transparent 42%), #6d1716;
+}
+
+.donationDecor {
+  position: absolute;
+  right: -8%;
+  top: 0;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.donationCopy,
+.historyDonationCopy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  max-width: 370px;
+  min-height: 100%;
+  padding: 48px;
+  color: #fff;
+}
+
+.adDiamond,
+.adSilver {
+  display: grid;
+  place-items: center;
+  gap: 14px;
+  min-height: 145px;
+  border-radius: 13px;
+  background: #7e1d1a;
+  color: #fff;
+  text-align: center;
+}
+
+.adDiamond p,
+.adSilver p {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+}
+
+.diamondIcon {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #fff;
+  transform: rotate(45deg);
+}
+
+.prayerButton {
+  display: flex;
+  margin: 24px auto 0;
+  background: #8e201d;
+  color: #fff;
+}
+
+.historySection,
+.gallerySection {
+  background: linear-gradient(rgba(246, 238, 223, 0.92), rgba(246, 238, 223, 0.92)), url("/figma-assets/fundo2.jpg") center/cover no-repeat;
+}
+
+.historyCard img,
+.historyDonationCard img,
+.voxDonationCard img,
+.appImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.textOverlay,
+.historyDonationCopy {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(51, 14, 11, 0) 0%, rgba(51, 14, 11, 0.92) 40%);
+  color: #fff;
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gallerySection {
+  padding: 36px 0 72px;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.galleryCard {
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 1.14;
+  background: #d3c2a0;
+}
+
+.galleryButton {
+  display: block;
+  margin: 26px auto 0;
+  min-width: 280px;
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 11px;
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.galleryButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.voxGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.voxInfoCard {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(126, 29, 26, 0.94), rgba(91, 9, 8, 0.95));
+  color: #fff;
+}
+
+.voxBellWrap img {
+  width: min(250px, 100%);
+}
+
+.musicSection {
+  background: #f8f1e6;
+}
+
+.musicCard,
+.memberCard {
+  padding: 28px;
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.spotifyFrame {
+  width: 100%;
+  min-height: 152px;
+  border: 0;
+  border-radius: 12px;
+}
+
+.memberCard p {
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.mapSection {
+  background: rgba(217, 182, 91, 0.85);
+}
+
+.mapEyebrow {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.pointList {
+  display: grid;
+  gap: 10px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.pointCard {
+  padding: 20px;
+  border: 0;
+  border-radius: 9px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pointCard h3 {
+  margin-bottom: 10px;
+  color: #7e1d1a;
+  font-size: 1.1rem;
+}
+
+.pointCardActive {
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.pointCardActive h3 {
+  color: #fff;
+}
+
+.mapFrame {
+  overflow: hidden;
+  border: 3px solid #5e060b;
+  border-radius: 15px 15px 12px 11px;
+  background: #fff;
+  min-height: 385px;
+}
+
+.mapFrame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 385px;
+  border: 0;
+}
+
+.appCard {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  padding: 40px;
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.appCard p {
+  max-width: 380px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.storeButtons img {
+  width: 210px;
+  max-width: 100%;
+}
+
+.appImage {
+  position: absolute;
+  right: -5%;
+  bottom: -9%;
+  width: min(54%, 420px);
+  object-fit: contain;
+}
+
+.footerTop {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  padding: 36px 24px 20px;
+  background: #fff;
+}
+
+.footerTop > img:first-child {
+  width: min(649px, 100%);
+}
+
+.announcements {
+  display: grid;
+  gap: 18px;
+  width: min(1300px, 100%);
+  padding: 22px;
+  border-radius: 14px;
+  background: #f5efe2;
+  border: 1px solid rgba(126, 29, 26, 0.14);
+}
+
+.announceGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.logoSlots span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  min-height: 52px;
+  padding: 10px 16px;
+  border: 1px dashed rgba(126, 29, 26, 0.4);
+  border-radius: 10px;
+  background: #fff;
+  color: #7e1d1a;
+  font-weight: 600;
+}
+
+.footer {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  background: #7e1d1a;
+  color: #fff;
+  text-align: center;
+}
+
+.footerLogos {
+  align-items: center;
+}
+
+.footerLogos img:first-child {
+  width: 96px;
+}
+
+.footerLogos img:last-child {
+  width: 33px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(23, 18, 14, 0.72);
+}
+
+.modalCard {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: min(86vh, 860px);
+  overflow: auto;
+  padding: 32px;
+  background: #fff7eb;
+}
+
+.modalCard h2 {
+  margin-bottom: 12px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 2.4rem;
+  color: #7e1d1a;
+}
+
+.modalCard p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.modalClose {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: 0;
+  background: transparent;
+  color: #7e1d1a;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modalGallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.modalGallery img {
+  max-height: 320px;
+  border-radius: 14px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filterPill:hover,
+  .dayCard:hover,
+  .pointCard:hover,
+  .linkButton:hover,
+  .ctaLink:hover,
+  .secondaryLink:hover,
+  .prayerButton:hover,
+  .datePickerTrigger:hover,
+  .datePickerItem:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .videoGrid,
+  .dualBannerGrid,
+  .historyGrid,
+  .mapGrid,
+  .appGrid,
+  .musicGrid,
+  .voxGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .voxBellWrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .appImage {
+    position: static;
+    justify-self: end;
+    width: min(70%, 380px);
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 820px) {
+  .headerInner {
+    flex-direction: column;
+    padding: 12px 20px;
+  }
+
+  .nav {
+    justify-content: center;
+    gap: 14px;
+    font-size: 0.82rem;
+  }
+
+  .scheduleItem,
+  .storyCard,
+  .modalGallery,
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .storyCard {
+    text-align: center;
+  }
+
+  .storyCard img {
+    max-height: 320px;
+  }
+
+  .donationDecor {
+    right: -16%;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .counterBar {
+    min-height: 60px;
+  }
+
+  .scheduleSection,
+  .videoSection,
+  .musicSection,
+  .historySection,
+  .mapSection,
+  .adSection {
+    padding: 40px 0 52px;
+  }
+
+  .dualBannerGrid,
+  .appGrid,
+  .voxGrid {
+    padding: 24px 0;
+  }
+
+  .storyCard,
+  .donationCard,
+  .historyCard,
+  .historyDonationCard,
+  .voxInfoCard,
+  .voxDonationCard,
+  .appCard,
+  .musicCard,
+  .memberCard,
+  .modalCard,
+  .datePickerPanel {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .datePickerHeader {
+    padding: 12px 0 10px;
+  }
+
+  .datePickerList {
+    padding: 10px 0 0;
+  }
+
+  .donationCopy,
+  .historyDonationCopy {
+    padding: 24px;
+  }
+
+  .footer {
+    padding-bottom: 44px;
+  }
+}
