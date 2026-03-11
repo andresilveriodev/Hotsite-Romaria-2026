@@ -45,17 +45,16 @@ const infoModals = {
 type ModalKey = keyof typeof infoModals | null;
 type CategoryFilter = (typeof scheduleCategories)[number]["id"];
 
+const SHOW_PROGRAMACAO = false;
+const SHOW_FORMULARIO_ENVIO_FOTO = false;
+const SHOW_GALERIA = false;
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [selectedDate, setSelectedDate] = useState("all");
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("26-06");
   const [activeMapId, setActiveMapId] = useState(touristPoints[0]?.id ?? "");
   const [openModal, setOpenModal] = useState<ModalKey>(null);
 
-  const selectedDateItem = useMemo(
-    () => scheduleDays.find((day) => day.id === selectedDate) ?? scheduleDays[0],
-    [selectedDate]
-  );
 
   const daysLeft = useMemo(() => {
     const start = new Date(countdownStartDate);
@@ -69,18 +68,6 @@ export default function Home() {
     return Math.max(0, countdownInitialDays - diffDays);
   }, []);
 
-  const visibleFixedGroups = useMemo(() => {
-    if (selectedDate !== "all") {
-      return [];
-    }
-
-    return fixedScheduleGroups
-      .map((group) => ({
-        ...group,
-        items: group.items.filter((item) => selectedCategory === "all" || item.category === selectedCategory),
-      }))
-      .filter((group) => group.items.length > 0);
-  }, [selectedCategory, selectedDate]);
 
   const visibleDateGroups = useMemo(() => {
     const filtered = dateScheduleEntries.filter((entry) => {
@@ -90,12 +77,16 @@ export default function Home() {
       return categoryMatch && dateMatch && !hideDailyOnSpecificDate;
     });
 
-    return filtered.reduce<Record<string, typeof filtered>>((acc, entry) => {
+    const grouped = filtered.reduce<Record<string, typeof filtered>>((acc, entry) => {
       const key = entry.dateLabel ?? entry.dateId ?? "Sem data";
       acc[key] ??= [];
       acc[key].push(entry);
       return acc;
     }, {});
+
+    return Object.fromEntries(
+      Object.entries(grouped).map(([key, value]) => [key, value.slice(0, 3)])
+    );
   }, [selectedCategory, selectedDate]);
 
   const activeMap = touristPoints.find((point) => point.id === activeMapId) ?? touristPoints[0];
@@ -126,10 +117,10 @@ export default function Home() {
         <div className={styles.headerInner}>
           <img className={styles.headerLogo} src="/figma-assets/logo-title.png" alt="Romaria 2026" />
           <nav className={styles.nav}>
-            <a href="#programacao">PROGRAMAÇÃO</a>
+            {SHOW_PROGRAMACAO ? <a href="#programacao">PROGRAMAÇÃO</a> : null}
             <a href="#turisticos">PONTOS TURÍSTICOS</a>
             <Link href="/historia-da-romaria">HISTÓRIA DA ROMARIA</Link>
-            <a href="#galeria">GALERIA</a>
+            {SHOW_GALERIA ? <a href="#galeria">GALERIA</a> : null}
             <a href="#contato">CONTATO</a>
           </nav>
         </div>
@@ -148,6 +139,7 @@ export default function Home() {
         <img className={styles.mottoImage} src="/figma-assets/clamamos.png" alt="Clamamos Abbá, Pai!" />
       </section>
 
+      {SHOW_PROGRAMACAO ? (
       <section className={styles.scheduleSection} id="programacao" data-reveal>
         <img className={`${styles.arch} ${styles.archLeft}`} src="/figma-assets/arco.png" alt="" aria-hidden="true" />
         <img className={`${styles.arch} ${styles.archRight}`} src="/figma-assets/arco.png" alt="" aria-hidden="true" />
@@ -167,37 +159,48 @@ export default function Home() {
             ))}
           </div>
 
-          <div className={styles.datePickerBar}>
-            <button
-              type="button"
-              className={styles.datePickerTrigger}
-              onClick={() => setIsDatePickerOpen(true)}
-            >
-              {selectedDate === "all"
-                ? "TODAS | Todas DATAS"
-                : `${selectedDateItem.weekDay} ${selectedDateItem.label}/${selectedDateItem.month}`}
-            </button>
+          <div className={styles.daysScroller}>
+            {scheduleDays.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`${styles.dayCard} ${selectedDate === item.id ? styles.dayCardActive : ""}`}
+                onClick={() => setSelectedDate(item.id)}
+              >
+                <span>{item.weekDay}</span>
+                <strong>{item.label}</strong>
+                <span>{item.month}</span>
+              </button>
+            ))}
           </div>
 
           {selectedDate === "all" && (selectedCategory === "all" || selectedCategory === "daily" || selectedCategory === "missas") ? (
             <div className={styles.scheduleBlocks}>
-              {visibleFixedGroups.map((group) => (
-                <section className={styles.scheduleBlock} key={group.id}>
-                  <h3>{group.title}</h3>
-                  <div className={styles.scheduleList}>
-                    {group.items.map((item) => (
-                      <article className={styles.scheduleItem} key={item.id}>
-                        <p className={styles.scheduleTime}>{item.time}</p>
-                        <div>
-                          <h4>{item.title}</h4>
-                          <p>{item.location}</p>
-                          {item.details ? <small>{item.details}</small> : null}
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-              ))}
+              {fixedScheduleGroups
+                .map((group) => ({
+                  ...group,
+                  items: group.items
+                    .filter((item) => selectedCategory === "all" || item.category === selectedCategory)
+                    .slice(0, 3),
+                }))
+                .filter((group) => group.items.length > 0)
+                .map((group) => (
+                  <section className={styles.scheduleBlock} key={group.id}>
+                    <h3>{group.title}</h3>
+                    <div className={styles.scheduleList}>
+                      {group.items.map((item) => (
+                        <article className={styles.scheduleItem} key={item.id}>
+                          <p className={styles.scheduleTime}>{item.time}</p>
+                          <div>
+                            <h4>{item.title}</h4>
+                            <p>{item.location}</p>
+                            {item.details ? <small>{item.details}</small> : null}
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                ))}
             </div>
           ) : null}
 
@@ -221,6 +224,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      ) : null}
 
       <section className={styles.videoSection} data-reveal>
         <div className={styles.container}>
@@ -303,22 +307,25 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className={styles.gallerySection} id="galeria" data-reveal>
-        <div className={styles.container}>
-          <h2 className={styles.sectionTitleDark}>COMPARTILHE SUA JORNADA NA ROMARIA 2026</h2>
-          <div className={styles.galleryGrid}>
-            {galleryImages.map((image, index) => (
-              <div className={styles.galleryCard} key={image}>
-                <img src={image} alt={`Registro da Romaria ${index + 1}`} />
-              </div>
-            ))}
+      {SHOW_GALERIA ? (
+        <section className={styles.gallerySection} id="galeria" data-reveal>
+          <div className={styles.container}>
+            <h2 className={styles.sectionTitleDark}>COMPARTILHE SUA JORNADA NA ROMARIA 2026</h2>
+            <div className={styles.galleryGrid}>
+              {galleryImages.map((image, index) => (
+                <div className={styles.galleryCard} key={image}>
+                  <img src={image} alt={`Registro da Romaria ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+            {SHOW_FORMULARIO_ENVIO_FOTO ? (
+              <button className={styles.galleryButton} type="button" disabled>
+                Formulário de envio de foto será liberado na versão 2
+              </button>
+            ) : null}
           </div>
-          <button className={styles.galleryButton} type="button" disabled>
-            Formulário de envio de foto será liberado na versão 2
-          </button>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className={styles.voxSection} data-reveal>
         <img className={styles.paperTop} src="/figma-assets/paper.png" alt="" aria-hidden="true" />
@@ -452,32 +459,6 @@ export default function Home() {
         <p>© Copyright, 2026 Afipe - Associação Filhos do Pai Eterno</p>
       </footer>
 
-      {isDatePickerOpen ? (
-        <div className={styles.datePickerOverlay} onClick={() => setIsDatePickerOpen(false)}>
-          <div className={styles.datePickerPanel} onClick={(event) => event.stopPropagation()}>
-            <div className={styles.datePickerHeader}>
-              <h3>Selecione a data</h3>
-              <button type="button" onClick={() => setIsDatePickerOpen(false)} aria-label="Fechar">×</button>
-            </div>
-            <div className={styles.datePickerList}>
-              {scheduleDays.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`${styles.datePickerItem} ${selectedDate === item.id ? styles.dayCardActive : ""}`}
-                  onClick={() => {
-                    setSelectedDate(item.id);
-                    setIsDatePickerOpen(false);
-                  }}
-                >
-                  <span className={styles.datePickerLabel}>{item.id === "all" ? "TODAS | Todas DATAS" : `${item.weekDay} ${item.label}/${item.month}`}</span>
-                  <span className={styles.datePickerMeta}>{item.id === "all" ? "Mostra todas as datas" : "Mostra apenas a programação deste dia"}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
 
       {activeModal ? (
         <div className={styles.modalOverlay} role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={() => setOpenModal(null)}>
@@ -496,4 +477,14 @@ export default function Home() {
     </main>
   );
 }
+
+
+
+
+
+
+
+
+
+
 

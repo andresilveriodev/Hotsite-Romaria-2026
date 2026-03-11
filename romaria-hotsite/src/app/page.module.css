@@ -139,22 +139,34 @@
   margin-bottom: 20px;
 }
 
-.datePickerBar {
+.daysScroller {
   display: flex;
-  justify-content: center;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 12px;
   margin-bottom: 28px;
 }
 
-.datePickerTrigger {
-  min-height: 54px;
-  min-width: 260px;
-  padding: 12px 22px;
+.dayCard {
+  display: grid;
+  place-items: center;
+  flex: 0 0 118px;
+  min-height: 106px;
+  padding: 12px;
   border: 0;
-  border-radius: 999px;
-  background: #7e1d1a;
-  color: #fff;
-  font-weight: 700;
+  border-radius: 9px;
+  background: #d9b65b;
+  color: #7e1d1a;
   cursor: pointer;
+}
+
+.dayCard span {
+  font-size: 0.85rem;
+}
+
+.dayCard strong {
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 .filterPill,
@@ -164,9 +176,7 @@
 .galleryButton,
 .prayerButton,
 .ctaLink,
-.secondaryLink,
-.datePickerTrigger,
-.datePickerItem {
+.secondaryLink {
   transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
 }
 
@@ -838,9 +848,7 @@
   .linkButton:hover,
   .ctaLink:hover,
   .secondaryLink:hover,
-  .prayerButton:hover,
-  .datePickerTrigger:hover,
-  .datePickerItem:hover {
+  .prayerButton:hover {
     transform: translateY(-2px);
   }
 }
@@ -935,19 +943,7 @@
   .appCard,
   .musicCard,
   .memberCard,
-  .modalCard,
-  .datePickerPanel {
-    min-height: auto;
-    padding: 24px;
-  }
-
-  .datePickerHeader {
-    padding: 12px 0 10px;
-  }
-
-  .datePickerList {
-    padding: 10px 0 0;
-  }
+  .modalCard
 
   .donationCopy,
   .historyDonationCopy {
@@ -958,3 +954,5 @@
     padding-bottom: 44px;
   }
 }
+
+
