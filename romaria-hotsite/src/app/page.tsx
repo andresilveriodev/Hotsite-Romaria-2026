@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import ResponsiveBanner from "@/components/ui/ResponsiveBanner";
 
 import CounterBarSection from "@/components/sections/CounterBarSection";
@@ -19,7 +19,7 @@ import AdSection from "@/components/sections/AdSection";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 import InfoModal from "@/components/ui/InfoModal";
-import { countdownInitialDays, countdownStartDate, touristPoints } from "@/data/romaria-content";
+import { countdownTargetDate, touristPoints } from "@/data/romaria-content";
 import { SHOW_FORMULARIO_ENVIO_FOTO, SHOW_GALERIA, SHOW_PROGRAMACAO, infoModals } from "@/lib/landing-config";
 import { CategoryFilter, ModalKey } from "@/types/landing";
 import styles from "./page.module.css";
@@ -31,35 +31,35 @@ export default function Home() {
   const [activeMapId, setActiveMapId] = useState(touristPoints[0]?.id ?? "");
   const [openModal, setOpenModal] = useState<ModalKey>(null);
 
-  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number }>({
+  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number; isFinished: boolean }>({
     days: 0,
     hours: 0,
     minutes: 0,
+    seconds: 0,
+    isFinished: false,
   });
 
   useEffect(() => {
     const calculateTime = () => {
-      const start = new Date(countdownStartDate);
+      const targetDate = new Date(countdownTargetDate);
       const now = new Date();
-      
-      // Calculate the target end date: startDate + initialDays
-      const targetDate = new Date(start.getTime() + countdownInitialDays * 24 * 60 * 60 * 1000);
       const diffMs = targetDate.getTime() - now.getTime();
 
       if (diffMs <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0 });
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: true });
         return;
       }
 
-      const days = Math.floor(diffMs / (24 * 60 * 60 * 1000));
+      const days = Math.ceil(diffMs / (24 * 60 * 60 * 1000));
       const hours = Math.floor((diffMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
       const minutes = Math.floor((diffMs % (60 * 60 * 1000)) / (60 * 1000));
+      const seconds = Math.floor((diffMs % (60 * 1000)) / 1000);
 
-      setTimeLeft({ days, hours, minutes });
+      setTimeLeft({ days, hours, minutes, seconds, isFinished: false });
     };
 
     calculateTime();
-    const timer = setInterval(calculateTime, 1000 * 60); // Update every minute
+    const timer = setInterval(calculateTime, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -89,7 +89,13 @@ export default function Home() {
     <main className={styles.page}>
       <Header showProgramacao={SHOW_PROGRAMACAO} showGaleria={SHOW_GALERIA} />
 
-      <CounterBarSection days={timeLeft.days} hours={timeLeft.hours} minutes={timeLeft.minutes} />
+      <CounterBarSection
+        days={timeLeft.days}
+        hours={timeLeft.hours}
+        minutes={timeLeft.minutes}
+        seconds={timeLeft.seconds}
+        isFinished={timeLeft.isFinished}
+      />
       <HeroSection />
       <MottoSection />
 

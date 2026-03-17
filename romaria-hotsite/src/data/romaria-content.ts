@@ -39,6 +39,7 @@ export const youtubeMemberUrl = "https://www.youtube.com/watch?v=a16EkOwj7UM";
 export const googlePlayUrl = "https://play.google.com/store/apps/details?id=br.com.paieterno.app.mobile&pcampaignid=web_share";
 export const appStoreUrl = "https://apps.apple.com/br/app/pai-eterno/id6745186850?l=en-GB";
 export const countdownStartDate = "2026-04-18T00:00:00-03:00";
+export const countdownTargetDate = "2026-06-26T00:00:00-03:00";
 export const countdownInitialDays = 100;
 
 export const scheduleCategories = [
