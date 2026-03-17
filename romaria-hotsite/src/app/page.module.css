@@ -1,4 +1,4 @@
-﻿.page {
+.page {
   background: #f6eedf;
   color: #25140b;
 }
@@ -20,11 +20,11 @@
 .headerInner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: flex-start;
+  gap: 48px;
   margin: 0 auto;
   max-width: 1366px;
-  padding: 10px 24px;
+  padding: 10px 16px;
 }
 
 .headerLogo {
@@ -32,15 +32,100 @@
   max-width: 100%;
 }
 
+.logoAndMenu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuButton {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #7e1d1a;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menuButton svg {
+  width: 32px;
+  height: 32px;
+}
+
+.closeButton {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #7e1d1a;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobileNavHeader {
+  display: none;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 22px;
+  justify-content: flex-start;
+  gap: 36px;
   font-size: 0.95rem;
   font-weight: 600;
   color: #18130b;
+  transition: transform 0.3s ease;
 }
+
+@media (max-width: 900px) {
+  .menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #f6eedf;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 24px;
+    gap: 24px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    z-index: 100;
+  }
+
+  .navOpen {
+    transform: translateX(0);
+  }
+
+  .mobileNavHeader {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    transition: opacity 0.3s ease;
+  }
+}
+
 
 .counterBar {
   display: flex;
@@ -132,6 +217,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+}
+
+.logoSlots img {
+  width: 135px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .filterRow {
@@ -320,6 +411,11 @@
   background: #7e1d1a;
 }
 
+.videoSection {
+  margin-top: -42px;
+  margin-bottom: -42px;
+}
+
 .videoSection,
 .musicSection,
 .historySection,
@@ -332,11 +428,21 @@
 .dualBannerGrid,
 .historyGrid,
 .mapGrid,
-.appGrid,
-.musicGrid {
+.appGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
+
+}
+
+
+
+.spotifyFrame {
+  width: 800px;
+  height: 150px;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 0;
 }
 
 .mediaCard,
@@ -370,8 +476,7 @@
   color: #fff;
 }
 
-.embedFrame,
-.liveCard :global(div:last-child) {
+.embedFrame {
   overflow: hidden;
   border: 18px solid #d9b65b;
   border-radius: 21px;
@@ -379,7 +484,16 @@
   aspect-ratio: 16 / 9;
 }
 
+.liveCard :global(div:first-child) {
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 14px;
+  background: #d9b65b;
+  border: 1px solid rgba(126, 29, 26, 0.14);
+}
+
 .embedFrame iframe,
+.embedFrame :global(video),
 .liveCard :global(video),
 .liveCard :global(iframe) {
   width: 100%;
@@ -390,6 +504,7 @@
 
 .liveCard :global(div:last-child) {
   position: relative;
+  border: 0;
 }
 
 .paperTop {
@@ -413,16 +528,16 @@
 }
 
 .storyCard {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 24px;
   padding: 34px;
-  background: linear-gradient(90deg, #6d1716 0%, #8f2723 65%, #6d1716 100%);
   color: #fff;
 }
 
+
 .storyCard h2,
+.voxInfoCard h2,
 .appCard h2,
 .donationCopy h2 {
   margin-bottom: 18px;
@@ -440,7 +555,6 @@
 
 .storyCard img,
 .galleryCard img,
-.footerTop img,
 .footerLogos img,
 .modalGallery img {
   width: 100%;
@@ -474,15 +588,21 @@
   color: #fff;
 }
 
-.donationCard {
-  background: radial-gradient(circle at 20% 30%, rgba(217, 182, 91, 0.28), transparent 42%), #6d1716;
-}
 
 .donationDecor {
   position: absolute;
-  right: -8%;
+  right: -10;
   top: 0;
   height: 100%;
+  opacity: 0.9;
+}
+
+.donationDecorFill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0.9;
 }
 
@@ -490,13 +610,66 @@
 .historyDonationCopy {
   position: relative;
   z-index: 1;
-  display: grid;
-  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   gap: 18px;
-  max-width: 370px;
+  max-width: 470px;
   min-height: 100%;
   padding: 48px;
   color: #fff;
+  margin: 0 auto;
+}
+
+
+.trenzinhoContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+  max-width: 870px;
+  min-height: 100%;
+  padding: 88px;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.trenzinhoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #AB7C34;
+  font-size: 2.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.trenzinhoButton:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(171, 124, 52, 0.4);
+}
+
+.trenzinhoHint {
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.donationTextCenter {
+  text-align: center;
 }
 
 .adDiamond,
@@ -655,6 +828,21 @@
   max-height: 560px;
   overflow-y: auto;
   padding-right: 10px;
+  scrollbar-width: auto;
+  scrollbar-color: #7e1d1a transparent;
+}
+
+.pointList::-webkit-scrollbar {
+  width: 25px;
+}
+
+.pointList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pointList::-webkit-scrollbar-thumb {
+  background: #7e1d1a;
+  border-radius: 20px;
 }
 
 .pointCard {
@@ -732,7 +920,7 @@
   background: #fff;
 }
 
-.footerTop > img:first-child {
+.footerTop>img:first-child {
   width: min(649px, 100%);
 }
 
@@ -842,6 +1030,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+
   .filterPill:hover,
   .dayCard:hover,
   .pointCard:hover,
@@ -854,12 +1043,12 @@
 }
 
 @media (max-width: 1100px) {
+
   .videoGrid,
   .dualBannerGrid,
   .historyGrid,
   .mapGrid,
   .appGrid,
-  .musicGrid,
   .voxGrid {
     grid-template-columns: 1fr;
   }
@@ -943,9 +1132,7 @@
   .appCard,
   .musicCard,
   .memberCard,
-  .modalCard
-
-  .donationCopy,
+  .modalCard .donationCopy,
   .historyDonationCopy {
     padding: 24px;
   }
@@ -955,4 +1142,36 @@
   }
 }
 
+.appLinksContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 32px 24px;
 
+}
+
+
+
+.appLinkLogo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.appLinkLogo:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .appLinksContainer {
+    gap: 16px;
+    padding: 24px 16px;
+  }
+
+  .appLinkLogo {
+    height: 48px;
+  }
+}
