@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import ResponsiveBanner from "@/components/ui/ResponsiveBanner";
 
@@ -19,7 +20,7 @@ import AdSection from "@/components/sections/AdSection";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 import InfoModal from "@/components/ui/InfoModal";
-import { countdownTargetDate, touristPoints } from "@/data/romaria-content";
+import { touristPoints } from "@/data/romaria-content";
 import { SHOW_FORMULARIO_ENVIO_FOTO, SHOW_GALERIA, SHOW_PROGRAMACAO, infoModals } from "@/lib/landing-config";
 import { CategoryFilter, ModalKey } from "@/types/landing";
 import styles from "./page.module.css";
@@ -30,39 +31,6 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState("26-06");
   const [activeMapId, setActiveMapId] = useState(touristPoints[0]?.id ?? "");
   const [openModal, setOpenModal] = useState<ModalKey>(null);
-
-  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number; isFinished: boolean }>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    isFinished: false,
-  });
-
-  useEffect(() => {
-    const calculateTime = () => {
-      const targetDate = new Date(countdownTargetDate);
-      const now = new Date();
-      const diffMs = targetDate.getTime() - now.getTime();
-
-      if (diffMs <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: true });
-        return;
-      }
-
-      const days = Math.ceil(diffMs / (24 * 60 * 60 * 1000));
-      const hours = Math.floor((diffMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-      const minutes = Math.floor((diffMs % (60 * 60 * 1000)) / (60 * 1000));
-      const seconds = Math.floor((diffMs % (60 * 1000)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds, isFinished: false });
-    };
-
-    calculateTime();
-    const timer = setInterval(calculateTime, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   const activeModal = openModal ? infoModals[openModal] : null;
 
@@ -89,13 +57,7 @@ export default function Home() {
     <main className={styles.page}>
       <Header showProgramacao={SHOW_PROGRAMACAO} showGaleria={SHOW_GALERIA} />
 
-      <CounterBarSection
-        days={timeLeft.days}
-        hours={timeLeft.hours}
-        minutes={timeLeft.minutes}
-        seconds={timeLeft.seconds}
-        isFinished={timeLeft.isFinished}
-      />
+      <CounterBarSection />
       <HeroSection />
       <MottoSection />
 
@@ -114,14 +76,15 @@ export default function Home() {
         mobileSrc="/figma-assets/banners/banner_treizinho_mobile.png"
         alt="Trenzinho"
         marginTop={72}
+        priority
       />
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faça sua doação"
+        alt="Faca sua doacao"
         href="https://doe.paieterno.com.br/"
         marginTop={32}
-        openInNewTab={true}
+        openInNewTab
       />
 
 
@@ -135,15 +98,15 @@ export default function Home() {
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_historia_da_romaria.png"
         mobileSrc="/figma-assets/banners/banner_treizinho_mobile.png"
-        alt="História da Romaria"
+        alt="Historia da Romaria"
         href="/historia-da-romaria"
       />
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_marron.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_marron_mobile.png"
-        alt="Faça sua doação"
+        alt="Faca sua doacao"
         href="https://doe.paieterno.com.br/"
-        openInNewTab={true}
+        openInNewTab
         marginTop={72}
       />
       <MapSection activeMapId={activeMapId} onSelectMapId={setActiveMapId} marginTop={72} />
@@ -157,9 +120,9 @@ export default function Home() {
         marginTop={72}
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faça sua doação"
+        alt="Faca sua doacao"
         href="https://doe.paieterno.com.br/"
-        openInNewTab={true}
+        openInNewTab
       />
       <ResponsiveBanner
         marginTop={72}
@@ -169,19 +132,19 @@ export default function Home() {
       />
       <div className={styles.appLinksContainer}>
         <a href="https://play.google.com/store/search?q=pai%20eterno&c=apps&hl=pt_BR" target="_blank" rel="noopener noreferrer">
-          <img src="/figma-assets/banners/google_play.png" alt="Google Play" className={styles.appLinkLogo} />
+          <Image src="/figma-assets/banners/google_play.png" alt="Google Play" className={styles.appLinkLogo} width={210} height={62} />
         </a>
         <a href="https://apps.apple.com/br/app/pai-eterno/id6745186850" target="_blank" rel="noopener noreferrer">
-          <img src="/figma-assets/banners/app_store.png" alt="App Store" className={styles.appLinkLogo} />
+          <Image src="/figma-assets/banners/app_store.png" alt="App Store" className={styles.appLinkLogo} width={210} height={62} />
         </a>
       </div>
       <ResponsiveBanner
         marginTop={72}
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faça sua doação"
+        alt="Faca sua doacao"
         href="https://doe.paieterno.com.br/"
-        openInNewTab={true}
+        openInNewTab
       />
 
       <AdSection type="silver" />

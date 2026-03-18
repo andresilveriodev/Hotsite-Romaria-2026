@@ -1,9 +1,9 @@
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 import styles from "@/app/page.module.css";
-import { countdownInitialDays } from "@/data/romaria-content";
+import { countdownInitialDays, countdownTargetDate } from "@/data/romaria-content";
 
-type CounterBarSectionProps = {
+type TimeLeft = {
   days: number;
   hours: number;
   minutes: number;
@@ -11,7 +11,41 @@ type CounterBarSectionProps = {
   isFinished: boolean;
 };
 
-export default function CounterBarSection({ days, hours, minutes, seconds, isFinished }: CounterBarSectionProps) {
+export default function CounterBarSection() {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isFinished: false,
+  });
+
+  useEffect(() => {
+    const calculateTime = () => {
+      const targetDate = new Date(countdownTargetDate);
+      const now = new Date();
+      const diffMs = targetDate.getTime() - now.getTime();
+
+      if (diffMs <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isFinished: true });
+        return;
+      }
+
+      const days = Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+      const hours = Math.floor((diffMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      const minutes = Math.floor((diffMs % (60 * 60 * 1000)) / (60 * 1000));
+      const seconds = Math.floor((diffMs % (60 * 1000)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds, isFinished: false });
+    };
+
+    calculateTime();
+    const timer = window.setInterval(calculateTime, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const { days, hours, minutes, seconds, isFinished } = timeLeft;
   const formatValue = (value: number, pad = true) => {
     if (!pad) return value.toString();
     return value.toString().padStart(2, "0");

@@ -1,4 +1,4 @@
-﻿import { dateScheduleEntries, fixedScheduleGroups, scheduleCategories, scheduleDays } from "@/data/romaria-content";
+import { dateScheduleEntries, fixedScheduleGroups, scheduleCategories, scheduleDays } from "@/data/romaria-content";
 import { CategoryFilter } from "@/types/landing";
 import styles from "@/app/page.module.css";
 
@@ -33,7 +33,7 @@ export default function ScheduleSection({ selectedCategory, selectedDate, onSele
       <img className={`${styles.arch} ${styles.archLeft}`} src="/figma-assets/arco.png" alt="" aria-hidden="true" />
       <img className={`${styles.arch} ${styles.archRight}`} src="/figma-assets/arco.png" alt="" aria-hidden="true" />
       <div className={styles.container}>
-        <h2 className={styles.sectionTitleDark}>PROGRAMAÇÃO DIÁRIA</h2>
+        <h2 className={styles.sectionTitleDark}>PROGRAMA��O DI�RIA</h2>
 
         <div className={styles.filterRow}>
           {scheduleCategories.map((filter) => (

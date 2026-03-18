@@ -1,4 +1,4 @@
-﻿import { spotifyEmbedUrl, youtubeMemberUrl } from "@/data/romaria-content";
+import { spotifyEmbedUrl } from "@/data/romaria-content";
 import styles from "@/app/page.module.css";
 
 export default function MusicSection() {

@@ -1,4 +1,4 @@
-﻿import { galleryImages } from "@/lib/landing-config";
+import { galleryImages } from "@/lib/landing-config";
 import styles from "@/app/page.module.css";
 
 type GallerySectionProps = {
@@ -19,7 +19,7 @@ export default function GallerySection({ showFormularioEnvioFoto }: GallerySecti
         </div>
         {showFormularioEnvioFoto ? (
           <button className={styles.galleryButton} type="button" disabled>
-            Formulário de envio de foto será liberado na versão 2
+            Formul�rio de envio de foto ser� liberado na vers�o 2
           </button>
         ) : null}
       </div>

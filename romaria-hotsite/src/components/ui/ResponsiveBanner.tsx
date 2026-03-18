@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./ResponsiveBanner.module.css";
 
@@ -8,6 +9,7 @@ type ResponsiveBannerProps = {
   alt: string;
   marginTop?: number;
   openInNewTab?: boolean;
+  priority?: boolean;
 };
 
 export default function ResponsiveBanner({
@@ -17,14 +19,31 @@ export default function ResponsiveBanner({
   alt,
   marginTop,
   openInNewTab,
+  priority = false,
 }: ResponsiveBannerProps) {
   const content = (
     <div
       className={styles.container}
       style={{ marginTop: marginTop ? `${marginTop}px` : undefined }}
     >
-      <img src={desktopSrc} alt={alt} className={styles.desktopImage} />
-      <img src={mobileSrc} alt={alt} className={styles.mobileImage} />
+      <Image
+        src={desktopSrc}
+        alt={alt}
+        className={styles.desktopImage}
+        width={1600}
+        height={720}
+        sizes="100vw"
+        priority={priority}
+      />
+      <Image
+        src={mobileSrc}
+        alt={alt}
+        className={styles.mobileImage}
+        width={900}
+        height={1200}
+        sizes="100vw"
+        priority={priority}
+      />
     </div>
   );
 
@@ -41,6 +60,7 @@ export default function ResponsiveBanner({
         </a>
       );
     }
+
     return (
       <Link href={href} className={styles.link}>
         {content}

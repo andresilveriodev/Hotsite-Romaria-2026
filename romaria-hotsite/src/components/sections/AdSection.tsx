@@ -9,14 +9,14 @@ export default function AdSection({ type }: AdSectionProps) {
     <section className={styles.adSection} data-reveal>
       <div className={styles.container}>
         {type === "diamond" ? (
-          <>
-            <div className={styles.adDiamond}>
-              <span className={styles.diamondIcon} aria-hidden="true" />
-              <p>ANÚNCIO DIAMANTE</p>
-            </div>
-          </>
+          <div className={styles.adDiamond}>
+            <span className={styles.diamondIcon} aria-hidden="true" />
+            <p>ANUNCIE AQUI</p>
+          </div>
         ) : (
-          <div className={styles.adSilver}><p>ANÚNCIO PRATA</p></div>
+          <div className={styles.adSilver}>
+            <p>ANUNCIE AQUI</p>
+          </div>
         )}
       </div>
     </section>

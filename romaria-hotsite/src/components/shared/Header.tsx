@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import styles from "@/app/page.module.css";
 
@@ -11,9 +12,27 @@ type HeaderProps = {
 
 export default function Header({ showProgramacao, showGaleria }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigationId = useId();
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((currentState) => !currentState);
   };
 
   const closeMenu = () => {
@@ -24,53 +43,47 @@ export default function Header({ showProgramacao, showGaleria }: HeaderProps) {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <div className={styles.logoAndMenu}>
-          <button className={styles.menuButton} onClick={toggleMenu} aria-label="Toggle Menu">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+          <button
+            type="button"
+            className={styles.menuButton}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Fechar menu principal" : "Abrir menu principal"}
+            aria-expanded={isMenuOpen}
+            aria-controls={navigationId}
+          >
+            <span className={styles.menuButtonBox} aria-hidden="true">
+              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineTopOpen : ""}`} />
+              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineMiddleOpen : ""}`} />
+              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineBottomOpen : ""}`} />
+            </span>
           </button>
-          <Link href="/">
-            <img className={styles.headerLogo} src="/figma-assets/logo-title.png" alt="Romaria 2026" />
+
+          <Link href="/" className={styles.headerBrand} onClick={closeMenu}>
+            <Image className={styles.headerLogo} src="/figma-assets/logo-title.png" alt="Romaria 2026" width={190} height={70} priority />
           </Link>
         </div>
 
-        {isMenuOpen && <div className={styles.menuOverlay} onClick={closeMenu}></div>}
+        {isMenuOpen ? (
+          <button type="button" className={styles.menuOverlay} onClick={closeMenu} aria-label="Fechar menu" />
+        ) : null}
 
-        <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}>
+        <nav
+          id={navigationId}
+          className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
+          aria-label="Menu principal"
+        >
           <div className={styles.mobileNavHeader}>
-            <button className={styles.closeButton} onClick={closeMenu} aria-label="Close Menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
+            <p className={styles.mobileNavEyebrow}>Navegacao</p>
+            <button type="button" className={styles.closeButton} onClick={closeMenu} aria-label="Fechar menu principal">
+              Fechar
             </button>
           </div>
-          {showProgramacao ? <Link href="/#programacao" onClick={closeMenu}>PROGRAMAÇÃO</Link> : null}
-          <Link href="/#turisticos" onClick={closeMenu}>PONTOS TURÍSTICOS</Link>
-          <Link href="/historia-da-romaria" onClick={closeMenu}>HISTÓRIA DA ROMARIA</Link>
-          {showGaleria ? <Link href="/#galeria" onClick={closeMenu}>GALERIA</Link> : null}
+
+          {showProgramacao ? <Link href="/#programacao" onClick={closeMenu}>Programacao</Link> : null}
+          <Link href="/#turisticos" onClick={closeMenu}>Pontos turisticos</Link>
+          <Link href="/historia-da-romaria" onClick={closeMenu}>Historia da Romaria</Link>
+          {showGaleria ? <Link href="/#galeria" onClick={closeMenu}>Galeria</Link> : null}
+          <Link href="/#contato" onClick={closeMenu}>Contato</Link>
         </nav>
       </div>
     </header>

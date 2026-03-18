@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import Hls from "hls.js";
 
+const PORTAL_PAIETERNO_LIVE_URL = "https://video09.logicahost.com.br/paieterno/paieterno/playlist.m3u8";
+
 type LiveTvProps = {
   src?: string;
   poster?: string;
@@ -11,10 +13,10 @@ type LiveTvProps = {
 };
 
 export default function LiveTv({
-  src = process.env.NEXT_PUBLIC_LIVE_TV_SRC ?? "",
+  src = process.env.NEXT_PUBLIC_LIVE_TV_SRC ?? PORTAL_PAIETERNO_LIVE_URL,
   poster = "/figma-assets/live.jpg",
-  
-  fallbackEmbedUrl = "https://www.youtube.com/embed/OkZUJrsQLsQ?autoplay=1&mute=1&rel=0",
+  title = "TV Pai Eterno ao vivo",
+  fallbackEmbedUrl = "https://www.youtube.com/embed/yJBT4yVhwPw",
 }: LiveTvProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasStream = Boolean(src);
@@ -45,15 +47,16 @@ export default function LiveTv({
         <video
           ref={videoRef}
           controls
-          autoPlay
           muted
           playsInline
           poster={poster}
-          preload="metadata"
+          preload="none"
+          aria-label={title}
         />
       ) : (
         <iframe
           src={fallbackEmbedUrl}
+          title={title}
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           allowFullScreen
           loading="lazy"
