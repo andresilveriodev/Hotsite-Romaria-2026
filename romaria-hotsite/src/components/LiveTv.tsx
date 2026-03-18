@@ -25,20 +25,39 @@ export default function LiveTv({
     const video = videoRef.current;
     if (!video || !src) return;
 
+    const tryPlay = () => {
+      video
+        .play()
+        .catch(() => {
+          // Ignore autoplay rejections and keep controls available for manual start.
+        });
+    };
+
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = src;
+      video.addEventListener("loadedmetadata", tryPlay);
+
+      return () => {
+        video.removeEventListener("loadedmetadata", tryPlay);
+      };
+    }
+
+    if (!Hls.isSupported()) {
       return;
     }
 
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
+    const hls = new Hls({
+      autoStartLoad: true,
+      enableWorker: true,
+    });
 
-      return () => {
-        hls.destroy();
-      };
-    }
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, tryPlay);
+
+    return () => {
+      hls.destroy();
+    };
   }, [src]);
 
   return (
@@ -47,10 +66,11 @@ export default function LiveTv({
         <video
           ref={videoRef}
           controls
+          autoPlay
           muted
           playsInline
           poster={poster}
-          preload="none"
+          preload="metadata"
           aria-label={title}
         />
       ) : (
