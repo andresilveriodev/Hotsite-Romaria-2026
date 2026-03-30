@@ -72,6 +72,14 @@ export default function Home() {
 
       <VideoSection />
       <ResponsiveBanner
+        desktopSrc="/figma-assets/banners/banner_desktop_e-book.png"
+        mobileSrc="/figma-assets/banners/banner_mobile_e-book.png"
+        alt="Livro de cânticos e orações da Romaria 2026"
+        href="https://pay.hotmart.com/H104953182H"
+        marginTop={72}
+        openInNewTab
+      />
+      <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_treizinho.png"
         mobileSrc="/figma-assets/banners/banner_treizinho_mobile.png"
         alt="Trenzinho"
