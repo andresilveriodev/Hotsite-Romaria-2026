@@ -62,13 +62,7 @@
   text-transform: none; /*EB Garamond looks better in title case or just capitalized */
 }
 
-.diamondIcon {
-  width: 44px;
-  height: 44px;
-  background: url("/figma-assets/diamond.svg") center/contain no-repeat;
-  opacity: 0.8;
-  filter: sepia(1) saturate(2) hue-rotate(350deg); /* Adjust SVG color to match text color */
-}
+
 
 @media (max-width: 1024px) {
   .adDiamond p,

@@ -10,7 +10,6 @@ export default function AdSection({ type }: AdSectionProps) {
       <div className={styles.container}>
         {type === "diamond" ? (
           <div className={styles.adDiamond}>
-            <span className={styles.diamondIcon} aria-hidden="true" />
             <p>ANUNCIE AQUI</p>
           </div>
         ) : (
