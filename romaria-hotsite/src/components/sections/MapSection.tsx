@@ -18,8 +18,8 @@ export default function MapSection({ activeMapId, onSelectMapId, marginTop }: Ma
       style={{ marginTop: marginTop ? `${marginTop}px` : undefined }}
     >
       <div className={styles.container}>
-        <p className={styles.mapEyebrow}>Mapa interativo dos pontos turisticos</p>
-        <h2 className={styles.sectionTitleDark}>PONTOS TURISTICOS</h2>
+        <p className={styles.mapEyebrow}>Mapa interativo dos pontos turísticos</p>
+        <h2 className={styles.sectionTitleDark}>PONTOS TURÍSTICOS</h2>
         <div className={styles.mapGrid}>
           <div className={styles.pointList}>
             {touristPoints.map((point) => (

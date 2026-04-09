@@ -89,7 +89,7 @@ export default function Home() {
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faca sua doacao"
+        alt="Faça sua doação"
         href="https://doe.paieterno.com.br/"
         marginTop={32}
         openInNewTab
@@ -106,13 +106,13 @@ export default function Home() {
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_historia_da_romaria.png"
         mobileSrc="/figma-assets/banners/banner_treizinho_mobile.png"
-        alt="Historia da Romaria"
+        alt="História da Romaria"
         href="/historia-da-romaria"
       />
       <ResponsiveBanner
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_marron.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_marron_mobile.png"
-        alt="Faca sua doacao"
+        alt="Faça sua doação"
         href="https://doe.paieterno.com.br/"
         openInNewTab
         marginTop={72}
@@ -128,7 +128,7 @@ export default function Home() {
         marginTop={72}
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faca sua doacao"
+        alt="Faça sua doação"
         href="https://doe.paieterno.com.br/"
         openInNewTab
       />
@@ -150,7 +150,7 @@ export default function Home() {
         marginTop={72}
         desktopSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor.png"
         mobileSrc="/figma-assets/banners/banner_faça_sua_doação_vermelhor_mobile.png"
-        alt="Faca sua doacao"
+        alt="Faça sua doação"
         href="https://doe.paieterno.com.br/"
         openInNewTab
       />

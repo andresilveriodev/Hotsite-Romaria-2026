@@ -73,15 +73,15 @@ export default function Header({ showProgramacao, showGaleria }: HeaderProps) {
           aria-label="Menu principal"
         >
           <div className={styles.mobileNavHeader}>
-            <p className={styles.mobileNavEyebrow}>Navegacao</p>
+            <p className={styles.mobileNavEyebrow}>Navegação</p>
             <button type="button" className={styles.closeButton} onClick={closeMenu} aria-label="Fechar menu principal">
               Fechar
             </button>
           </div>
 
-          {showProgramacao ? <Link href="/#programacao" onClick={closeMenu}>Programacao</Link> : null}
-          <Link href="/#turisticos" onClick={closeMenu}>Pontos turisticos</Link>
-          <Link href="/historia-da-romaria" onClick={closeMenu}>Historia da Romaria</Link>
+          {showProgramacao ? <Link href="/#programacao" onClick={closeMenu}>Programação</Link> : null}
+          <Link href="/#turisticos" onClick={closeMenu}>Pontos turísticos</Link>
+          <Link href="/historia-da-romaria" onClick={closeMenu}>História da Romaria</Link>
           {showGaleria ? <Link href="/#galeria" onClick={closeMenu}>Galeria</Link> : null}
           <Link href="/#contato" onClick={closeMenu}>Contato</Link>
         </nav>
