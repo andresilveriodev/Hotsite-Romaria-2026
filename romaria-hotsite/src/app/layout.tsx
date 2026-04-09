@@ -27,6 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${ebGaramond.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://img.youtube.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://video09.logicahost.com.br" crossOrigin="anonymous" />
+      </head>
       <body>{children}</body>
     </html>
   );
