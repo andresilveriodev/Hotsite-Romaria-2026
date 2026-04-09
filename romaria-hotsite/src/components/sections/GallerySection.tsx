@@ -20,7 +20,7 @@ export default function GallerySection({ showFormularioEnvioFoto }: GallerySecti
           ))}
         </div>
         {showFormularioEnvioFoto ? (
-          <button className={styles.galleryButton} type="button" disabled>
+          <button className={galleryStyles.galleryButton} type="button" disabled>
             Formulário de envio de foto será liberado na versão 2
           </button>
         ) : null}

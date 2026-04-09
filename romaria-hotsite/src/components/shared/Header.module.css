@@ -1,0 +1,221 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 24px 0;
+  /* white with 80% opacity at the top */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(126, 29, 26, 0.05);
+}
+
+.scrolled {
+  background: rgba(232, 211, 160, 0.98);
+  backdrop-filter: blur(12px);
+  padding: 12px 0;
+  box-shadow: 0 4px 24px rgba(37, 20, 11, 0.12);
+  border-bottom: 1px solid rgba(126, 29, 26, 0.15);
+}
+
+.menuActive {
+  background: #f6eedf !important;
+}
+
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerMain {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerBrand {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.headerBrand:hover {
+  transform: scale(1.02);
+}
+
+.headerLogo {
+  height: 56px;
+  width: auto;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgba(37, 20, 11, 0.1));
+}
+
+.scrolled .headerLogo {
+  height: 44px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #25140b;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+}
+
+/* Subtle underline effect */
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #7e1d1a;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+.navLink:hover,
+.navLink.active {
+  color: #7e1d1a;
+}
+
+.liveBadge {
+  color: #7e1d1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+}
+
+.liveBadge::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #7e1d1a;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 rgba(126, 29, 26, 0.4);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(126, 29, 26, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(126, 29, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(126, 29, 26, 0); }
+}
+
+.mobileToggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(126, 29, 26, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 10px;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.mobileToggle:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #7e1d1a;
+}
+
+.mobileToggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #7e1d1a;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hamburger transition to X */
+.mobileToggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.mobileToggle.active span:nth-child(2) { opacity: 0; }
+.mobileToggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .mobileToggle {
+    display: flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: #f6eedf;
+    box-shadow: -10px 0 30px rgba(37, 20, 11, 0.15);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    flex-direction: column;
+    padding: 100px 40px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .navList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .navLink {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 0;
+  }
+  
+  .headerLogo {
+    height: 44px;
+  }
+}

@@ -1,5 +1,5 @@
 .adSection {
-  padding: 80px 0;
+  padding: 40px 0 20px; /* More discrete vertical spacing */
   background: transparent;
 }
 
@@ -12,39 +12,89 @@
 .adDiamond,
 .adSilver {
   width: 100%;
-  height: 240px;
+  height: 140px; /* Proportional to the 44px font size */
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Horizontal layout for a cleaner "banner" look */
   align-items: center;
   justify-content: center;
-  border-radius: 24px;
-  border: 1px dashed rgba(37, 20, 11, 0.2);
-  background: rgba(37, 20, 11, 0.03);
-  color: rgba(37, 20, 11, 0.3);
-  gap: 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(172, 125, 52, 0.3);
+  background: #E8D3A0;
+  color: #AC7D34;
+  gap: 20px;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gloss effect for "premium" feel */
+.adDiamond::after,
+.adSilver::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: none;
+}
+
+.adDiamond:hover::after,
+.adSilver:hover::after {
+  left: 100%;
+  transition: all 0.8s ease;
 }
 
 .adDiamond p,
 .adSilver p {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-garamond);
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: none; /*EB Garamond looks better in title case or just capitalized */
 }
 
 .diamondIcon {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   background: url("/figma-assets/diamond.svg") center/contain no-repeat;
-  opacity: 0.3;
+  opacity: 0.8;
+  filter: sepia(1) saturate(2) hue-rotate(350deg); /* Adjust SVG color to match text color */
+}
+
+@media (max-width: 1024px) {
+  .adDiamond p,
+  .adSilver p {
+    font-size: 32px;
+  }
 }
 
 @media (max-width: 768px) {
   .adSection {
-    padding: 48px 0;
+    padding: 24px 0;
   }
   
   .adDiamond,
   .adSilver {
-    height: 180px;
+    height: 100px;
+    padding: 0 20px;
+  }
+
+  .adDiamond p,
+  .adSilver p {
+    font-size: 24px;
+  }
+
+  .diamondIcon {
+    width: 28px;
+    height: 28px;
   }
 }

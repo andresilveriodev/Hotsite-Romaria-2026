@@ -1,5 +1,5 @@
 import { touristPoints } from "@/data/romaria-content";
-import styles from "@/app/page.module.css";
+import styles from "./MapSection.module.css";
 
 type MapSectionProps = {
   activeMapId: string;

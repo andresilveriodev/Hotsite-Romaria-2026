@@ -1,0 +1,133 @@
+.mapSection {
+  padding: 80px 0;
+  background: transparent;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mapEyebrow {
+  text-align: center;
+  font-size: 14px;
+  color: #7e1d1a;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.sectionTitleDark {
+  font-family: var(--font-garamond);
+  font-size: 32px;
+  color: #25140b;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mapGrid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 32px;
+  background: white;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(37, 20, 11, 0.08);
+  border: 1px solid rgba(126, 29, 26, 0.08);
+}
+
+.pointList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.pointList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.pointList::-webkit-scrollbar-thumb {
+  background: rgba(126, 29, 26, 0.2);
+  border-radius: 10px;
+}
+
+.pointCard {
+  background: #fdfaf4;
+  border: 1px solid rgba(126, 29, 26, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pointCard h3 {
+  font-size: 16px;
+  color: #25140b;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.pointCard p {
+  font-size: 13px;
+  color: rgba(37, 20, 11, 0.6);
+  line-height: 1.4;
+}
+
+.pointCardActive {
+  background: #7e1d1a;
+  border-color: #7e1d1a;
+}
+
+.pointCardActive h3,
+.pointCardActive p {
+  color: white;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(126, 29, 26, 0.1);
+}
+
+.mapFrame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 1024px) {
+  .mapGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pointList {
+    max-height: 300px;
+    order: 2;
+  }
+  
+  .mapFrame {
+    height: 350px;
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .mapSection {
+    padding: 48px 0;
+  }
+  
+  .mapGrid {
+    padding: 16px;
+    gap: 16px;
+  }
+}
