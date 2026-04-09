@@ -6,15 +6,13 @@
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 24px 0;
-  /* white with 80% opacity at the top */
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(126, 29, 26, 0.05);
+  /* Bege oficial mesmo no estado zero */
+  background: rgba(232, 211, 160, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(126, 29, 26, 0.1);
 }
 
 .scrolled {
-  background: rgba(232, 211, 160, 0.98);
-  backdrop-filter: blur(12px);
   padding: 12px 0;
   box-shadow: 0 4px 24px rgba(37, 20, 11, 0.12);
   border-bottom: 1px solid rgba(126, 29, 26, 0.15);
@@ -71,10 +69,13 @@
   gap: 40px;
   margin: 0;
   padding: 0;
+  align-items: center; /* Alinhamento vertical corrigido */
 }
 
 .navItem {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .navLink {
@@ -86,24 +87,11 @@
   letter-spacing: 0.1em;
   transition: all 0.3s ease;
   padding: 8px 0;
+  display: flex;
+  align-items: center;
 }
 
-/* Subtle underline effect */
-.navLink::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #7e1d1a;
-  transition: width 0.3s ease;
-}
-
-.navLink:hover::after,
-.navLink.active::after {
-  width: 100%;
-}
+/* Removido o traço abaixo (underline) conforme solicitado */
 
 .navLink:hover,
 .navLink.active {
