@@ -1,7 +1,7 @@
 import LiveTv from "@/components/LiveTv";
 import LazyEmbed from "@/components/shared/LazyEmbed";
 import VideoFacade from "@/components/shared/VideoFacade";
-import styles from "@/app/page.module.css";
+import styles from "./VideoSection.module.css";
 
 export default function VideoSection() {
   return (

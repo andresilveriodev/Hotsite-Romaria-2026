@@ -1,0 +1,10 @@
+.mottoSection {
+  display: flex;
+  justify-content: center;
+  padding: 24px 24px 18px;
+  background: #f8f1e6;
+}
+
+.mottoImage {
+  width: min(649px, 100%);
+}

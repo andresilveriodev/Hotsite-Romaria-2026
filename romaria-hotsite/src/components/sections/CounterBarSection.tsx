@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 
-import styles from "@/app/page.module.css";
+import styles from "./CounterBarSection.module.css";
 import { countdownInitialDays, countdownTargetDate } from "@/data/romaria-content";
 
 type TimeLeft = {

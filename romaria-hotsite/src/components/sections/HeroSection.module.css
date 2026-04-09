@@ -1,0 +1,27 @@
+.heroSection {
+  background: #d7b26b;
+}
+
+.heroImage,
+.handsDivider,
+.paperTop,
+.paperBottom {
+  display: block;
+  width: 100%;
+}
+
+.heroImage {
+  min-height: 380px;
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.handsDivider {
+  margin-top: -2px;
+  height: auto;
+}
+
+.paperTop {
+  transform: scaleY(-1);
+}

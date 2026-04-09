@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { dateScheduleEntries, fixedScheduleGroups, scheduleCategories, scheduleDays } from "@/data/romaria-content";
 import { CategoryFilter } from "@/types/landing";
-import styles from "@/app/page.module.css";
+import styles from "./ScheduleSection.module.css";
 
 type ScheduleSectionProps = {
   selectedCategory: CategoryFilter;
