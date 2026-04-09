@@ -1,25 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ResponsiveBanner from "@/components/ui/ResponsiveBanner";
 
 import CounterBarSection from "@/components/sections/CounterBarSection";
-
-import GallerySection from "@/components/sections/GallerySection";
 import HeroSection from "@/components/sections/HeroSection";
 
-import MapSection from "@/components/sections/MapSection";
-import MottoSection from "@/components/sections/MottoSection";
-import MusicSection from "@/components/sections/MusicSection";
-import ScheduleSection from "@/components/sections/ScheduleSection";
-import VideoSection from "@/components/sections/VideoSection";
+const GallerySection = dynamic(() => import("@/components/sections/GallerySection"), { ssr: false });
+const MapSection = dynamic(() => import("@/components/sections/MapSection"), { ssr: false });
+const MottoSection = dynamic(() => import("@/components/sections/MottoSection"), { ssr: false });
+const MusicSection = dynamic(() => import("@/components/sections/MusicSection"), { ssr: false });
+const ScheduleSection = dynamic(() => import("@/components/sections/ScheduleSection"), { ssr: false });
+const VideoSection = dynamic(() => import("@/components/sections/VideoSection"), { ssr: false });
+const AdSection = dynamic(() => import("@/components/sections/AdSection"), { ssr: false });
+const InfoModal = dynamic(() => import("@/components/ui/InfoModal"), { ssr: false });
+const Footer = dynamic(() => import("@/components/shared/Footer"), { ssr: false });
 
-
-import AdSection from "@/components/sections/AdSection";
-import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
-import InfoModal from "@/components/ui/InfoModal";
 import { touristPoints } from "@/data/romaria-content";
 import { SHOW_FORMULARIO_ENVIO_FOTO, SHOW_GALERIA, SHOW_PROGRAMACAO, infoModals } from "@/lib/landing-config";
 import { CategoryFilter, ModalKey } from "@/types/landing";
