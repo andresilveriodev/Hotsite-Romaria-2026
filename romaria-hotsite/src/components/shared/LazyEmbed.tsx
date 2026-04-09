@@ -35,8 +35,16 @@ export default function LazyEmbed({
   }, []);
 
   return (
-    <div ref={containerRef} className={className} style={{ minHeight: isVisible ? "auto" : placeholderHeight }}>
-      {isVisible ? children : <div style={{ height: placeholderHeight, background: 'rgba(0,0,0,0.1)', borderRadius: '8px' }} />}
+    <div 
+      ref={containerRef} 
+      className={className} 
+      style={{ 
+        width: "100%",
+        height: "100%",
+        minHeight: isVisible ? "100%" : placeholderHeight 
+      }}
+    >
+      {isVisible ? children : <div style={{ height: placeholderHeight, width: "100%", background: 'rgba(0,0,0,0.05)', borderRadius: '12px' }} />}
     </div>
   );
 }
