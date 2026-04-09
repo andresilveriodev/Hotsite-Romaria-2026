@@ -3,7 +3,7 @@ import styles from "@/app/page.module.css";
 
 export default function HeroSection() {
   return (
-    <section className={styles.heroSection} data-reveal>
+    <section className={styles.heroSection}>
       <Image
         className={styles.heroImage}
         src="/figma-assets/hero.jpg"
@@ -12,6 +12,7 @@ export default function HeroSection() {
         height={900}
         sizes="100vw"
         priority
+        fetchPriority="high"
       />
       <Image
         className={styles.handsDivider}
