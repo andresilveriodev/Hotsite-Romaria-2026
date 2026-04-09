@@ -1,0 +1,91 @@
+.footerTop {
+  padding: 80px 24px;
+  background: #7e1d1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  color: #fff;
+  text-align: center;
+}
+
+.announcements {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 64px;
+  width: 100%;
+  max-width: 1180px;
+}
+
+.announceGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.announceGroup strong {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.logoSlots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  align-items: center;
+}
+
+.logoSlots img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  background: #7e1d1a;
+  color: #fff;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerLogos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.footerLogos img {
+  height: 60px; /* Aumentado para visibilidade */
+  width: auto !important; /* Sobrescreve largura fixa que possa estar causando o achatamento */
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .footerTop {
+    padding: 56px 16px;
+    gap: 32px;
+  }
+  .announcements {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .logoSlots {
+    gap: 20px;
+  }
+  .logoSlots img {
+    height: 32px;
+  }
+  .footerLogos img {
+    height: 48px;
+  }
+}

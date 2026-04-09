@@ -33,18 +33,26 @@
 }
 
 .embedFrame {
+  position: relative;
   overflow: hidden;
   border: 18px solid #d9b65b;
   border-radius: 21px;
   background: #17202f;
   aspect-ratio: 16 / 9;
+  width: 100%;
 }
 
-.embedFrame iframe {
+.embedFrame iframe,
+.embedFrame :global(iframe),
+.embedFrame :global(video) {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: 0;
   background: #000;
+  object-fit: contain; /* Garante que o vídeo caiba sem zoom/corte */
 }
 
 @media (max-width: 1100px) {
@@ -59,5 +67,8 @@
   }
   .videoSection {
     padding: 40px 0 52px;
+  }
+  .embedFrame {
+    border-width: 8px; /* Reduz borda no mobile */
   }
 }
