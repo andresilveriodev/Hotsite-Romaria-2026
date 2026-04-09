@@ -1,4 +1,4 @@
-import styles from "@/app/page.module.css";
+import styles from "./AdSection.module.css";
 
 type AdSectionProps = {
   type: "diamond" | "silver";

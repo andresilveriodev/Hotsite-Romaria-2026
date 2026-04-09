@@ -51,6 +51,10 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  turbopack: {
+    // Explicitly set the root to the project directory to solve the lockfile warning
+    root: ".",
+  },
 };
 
 export default nextConfig;

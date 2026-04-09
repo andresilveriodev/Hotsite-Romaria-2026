@@ -1,89 +1,76 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useId, useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "@/app/page.module.css";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import styles from "./Header.module.css";
 
-type HeaderProps = {
-  showProgramacao: boolean;
-  showGaleria: boolean;
-};
+const menuItems = [
+  { label: "Home", href: "/" },
+  { label: "História", href: "/historia-da-romaria" },
+  { label: "Oração", href: "/#oracao" },
+];
 
-export default function Header({ showProgramacao, showGaleria }: HeaderProps) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigationId = useId();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [isMenuOpen]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen((currentState) => !currentState);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.headerInner}>
-        <div className={styles.logoAndMenu}>
-          <button
-            type="button"
-            className={styles.menuButton}
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""} ${isMenuOpen ? styles.menuActive : ""}`}>
+      <div className={styles.container}>
+        <div className={styles.headerMain}>
+          <button 
+            className={`${styles.mobileToggle} ${isMenuOpen ? styles.active : ""}`} 
             onClick={toggleMenu}
-            aria-label={isMenuOpen ? "Fechar menu principal" : "Abrir menu principal"}
+            aria-label="Menu"
             aria-expanded={isMenuOpen}
-            aria-controls={navigationId}
           >
-            <span className={styles.menuButtonBox} aria-hidden="true">
-              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineTopOpen : ""}`} />
-              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineMiddleOpen : ""}`} />
-              <span className={`${styles.menuButtonLine} ${isMenuOpen ? styles.menuButtonLineBottomOpen : ""}`} />
-            </span>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
 
           <Link href="/" className={styles.headerBrand} onClick={closeMenu}>
-            <Image className={styles.headerLogo} src="/figma-assets/logo-title.png" alt="Romaria 2026" width={190} height={70} priority />
+            <Image className={styles.headerLogo} src="/figma-assets/logo-title.webp" alt="Romaria 2026" width={190} height={70} priority />
           </Link>
         </div>
 
-        {isMenuOpen ? (
-          <button type="button" className={styles.menuOverlay} onClick={closeMenu} aria-label="Fechar menu" />
-        ) : null}
-
-        <nav
-          id={navigationId}
-          className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`}
-          aria-label="Menu principal"
-        >
-          <div className={styles.mobileNavHeader}>
-            <p className={styles.mobileNavEyebrow}>Navegação</p>
-            <button type="button" className={styles.closeButton} onClick={closeMenu} aria-label="Fechar menu principal">
-              Fechar
-            </button>
-          </div>
-
-          {showProgramacao ? <Link href="/#programacao" onClick={closeMenu}>Programação</Link> : null}
-          <Link href="/#turisticos" onClick={closeMenu}>Pontos turísticos</Link>
-          <Link href="/historia-da-romaria" onClick={closeMenu}>História da Romaria</Link>
-          {showGaleria ? <Link href="/#galeria" onClick={closeMenu}>Galeria</Link> : null}
-          <Link href="/#contato" onClick={closeMenu}>Contato</Link>
+        <nav className={`${styles.nav} ${isMenuOpen ? styles.active : ""}`}>
+          <ul className={styles.navList}>
+            {menuItems.map((item) => (
+              <li key={item.href} className={styles.navItem}>
+                <Link
+                  href={item.href}
+                  className={`${styles.navLink} ${pathname === item.href ? styles.active : ""}`}
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            <li className={styles.navItem}>
+              <Link 
+                href="/#transmissao" 
+                className={`${styles.navLink} ${styles.liveBadge}`}
+                onClick={closeMenu}
+              >
+                Ao Vivo
+              </Link>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>

@@ -38,9 +38,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://romaria.paieterno.com.br",
   },
-  verification: {
-    google: "google-site-verification-id", // User should replace this
-  },
 };
 
 export default function RootLayout({
@@ -50,8 +47,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${ebGaramond.variable}`}>
+      <head>
+        {/* Preconnect hints for better performance */}
+        <link rel="preconnect" href="https://maps.googleapis.com" />
+        <link rel="preconnect" href="https://maps.gstatic.com" />
+        <link rel="preconnect" href="https://img.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+      </head>
       <body>{children}</body>
     </html>
   );
 }
-

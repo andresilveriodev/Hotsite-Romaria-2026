@@ -1,6 +1,6 @@
 import { spotifyEmbedUrl } from "@/data/romaria-content";
 import LazyEmbed from "@/components/shared/LazyEmbed";
-import styles from "@/app/page.module.css";
+import styles from "./MusicSection.module.css";
 
 export default function MusicSection() {
   return (

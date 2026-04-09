@@ -6,7 +6,7 @@ export default function HeroSection() {
     <section className={styles.heroSection}>
       <Image
         className={styles.heroImage}
-        src="/figma-assets/hero.jpg"
+        src="/figma-assets/hero.webp"
         alt="Banner principal da Romaria 2026"
         width={1600}
         height={900}
