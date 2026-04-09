@@ -1,11 +1,11 @@
 .footerTop {
   padding: 80px 24px;
-  background: #7e1d1a;
+  background: #f6eedf;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  color: #fff;
+  color: #7e1d1a;
   text-align: center;
 }
 
@@ -29,7 +29,6 @@
   font-size: 0.9rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.8;
 }
 
 .logoSlots {
