@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { galleryImages } from "@/lib/landing-config";
 import styles from "@/app/page.module.css";
 
@@ -13,13 +14,13 @@ export default function GallerySection({ showFormularioEnvioFoto }: GallerySecti
         <div className={styles.galleryGrid}>
           {galleryImages.map((image, index) => (
             <div className={styles.galleryCard} key={image}>
-              <img src={image} alt={`Registro da Romaria ${index + 1}`} />
+              <Image src={image} alt={`Registro da Romaria ${index + 1}`} width={400} height={300} />
             </div>
           ))}
         </div>
         {showFormularioEnvioFoto ? (
           <button className={styles.galleryButton} type="button" disabled>
-            Formul�rio de envio de foto ser� liberado na vers�o 2
+            Formulário de envio de foto será liberado na versão 2
           </button>
         ) : null}
       </div>

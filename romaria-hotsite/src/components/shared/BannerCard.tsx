@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import styles from "@/app/page.module.css";
 
 type BannerCardItemProps = {
@@ -55,11 +56,13 @@ export default function BannerCard({
   return (
     <article className={cardClassName}>
       {decorImage && (
-        <img
+        <Image
           className={fillCard ? styles.donationDecorFill : styles.donationDecor}
           src={decorImage}
           alt=""
           aria-hidden="true"
+          width={500}
+          height={500}
           style={decorOpacity !== 0.9 ? { opacity: decorOpacity } : undefined}
         />
       )}

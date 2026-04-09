@@ -1,4 +1,5 @@
-﻿import styles from "@/app/page.module.css";
+import Image from "next/image";
+import styles from "@/app/page.module.css";
 
 type InfoModalProps = {
   title: string;
@@ -16,7 +17,7 @@ export default function InfoModal({ title, text, images, onClose }: InfoModalPro
         <p>{text}</p>
         <div className={styles.modalGallery}>
           {images.map((image) => (
-            <img key={image} src={image} alt={title} />
+            <Image key={image} src={image} alt={title} width={400} height={300} />
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 import styles from "./page.module.css";
@@ -240,10 +241,12 @@ function HistoryCard({ year, description }: HistoryEntry) {
   return (
     <article className={styles.card}>
       <div className={styles.imageFrame}>
-        <img
+        <Image
           className={styles.image}
           src={getHistoryImage(year)}
           alt={`Registro visual da Romaria em ${year}`}
+          width={400}
+          height={300}
         />
       </div>
 

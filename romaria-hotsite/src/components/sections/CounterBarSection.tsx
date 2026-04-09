@@ -78,8 +78,8 @@ export default function CounterBarSection() {
       <div className={styles.counterPanel}>
         {isFinished ? (
           <div className={styles.counterWelcome}>
-            <p className={styles.counterIntro}>Agora e tempo de celebrar</p>
-            <h2>Bem vindo a Romaria 2026</h2>
+            <p className={styles.counterIntro}>Agora é tempo de celebrar</p>
+            <h2>Bem-vindo à Romaria 2026</h2>
           </div>
         ) : (
           <>

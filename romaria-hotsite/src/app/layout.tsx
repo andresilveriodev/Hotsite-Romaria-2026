@@ -1,9 +1,10 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hotsite Romaria 2026",
-  description: "Hotsite da Romaria 2026 recriado com base no layout do Figma.",
+  title: "Romaria do Divino Pai Eterno 2026 - Trindade, GO",
+  description: "Acompanhe a programação oficial, pontos turísticos, história e transmissão ao vivo da Romaria 2026 em Trindade. Clamamos: Abbá, Pai!",
+  keywords: ["Romaria 2026", "Divino Pai Eterno", "Trindade", "Goiás", "Festa de Trindade", "Religião"],
 };
 
 export default function RootLayout({
