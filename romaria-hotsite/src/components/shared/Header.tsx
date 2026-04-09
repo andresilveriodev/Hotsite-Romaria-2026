@@ -12,7 +12,12 @@ const menuItems = [
   { label: "Oração", href: "/#oracao" },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  showProgramacao?: boolean;
+  showGaleria?: boolean;
+}
+
+export default function Header({ showProgramacao, showGaleria }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
