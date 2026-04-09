@@ -458,12 +458,6 @@
 .dayCard,
 .pointCard,
 .linkButton,
-.galleryButton,
-.prayerButton,
-.ctaLink,
-.secondaryLink {
-  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
-}
 
 .filterPill {
   padding: 10px 22px;
@@ -748,13 +742,6 @@
 }
 
 .storyCard img,
-.galleryCard img,
-.footerLogos img,
-.modalGallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .storyCard img {
   object-fit: contain;
@@ -899,9 +886,6 @@
 }
 
 .historySection,
-.gallerySection {
-  background: linear-gradient(rgba(246, 238, 223, 0.92), rgba(246, 238, 223, 0.92)), url("/figma-assets/fundo2.jpg") center/cover no-repeat;
-}
 
 .historyCard img,
 .historyDonationCard img,
@@ -928,38 +912,10 @@
   text-transform: uppercase;
 }
 
-.gallerySection {
-  padding: 36px 0 72px;
-}
 
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
 
-.galleryCard {
-  overflow: hidden;
-  border-radius: 10px;
-  aspect-ratio: 1.14;
-  background: #d3c2a0;
-}
 
-.galleryButton {
-  display: block;
-  margin: 26px auto 0;
-  min-width: 280px;
-  padding: 14px 24px;
-  border: 0;
-  border-radius: 11px;
-  background: #7e1d1a;
-  color: #fff;
-}
 
-.galleryButton:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
 
 .voxGrid {
   display: grid;
@@ -1285,9 +1241,6 @@
   .scheduleItem,
   .storyCard,
   .modalGallery,
-  .galleryGrid {
-    grid-template-columns: 1fr;
-  }
 
   .storyCard {
     text-align: center;

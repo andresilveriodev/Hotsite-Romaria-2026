@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { galleryImages } from "@/lib/landing-config";
+import galleryStyles from "./GallerySection.module.css";
 import styles from "@/app/page.module.css";
 
 type GallerySectionProps = {
@@ -8,12 +9,12 @@ type GallerySectionProps = {
 
 export default function GallerySection({ showFormularioEnvioFoto }: GallerySectionProps) {
   return (
-    <section className={styles.gallerySection} id="galeria" data-reveal>
+    <section className={galleryStyles.gallerySection} id="galeria" data-reveal>
       <div className={styles.container}>
         <h2 className={styles.sectionTitleDark}>COMPARTILHE SUA JORNADA NA ROMARIA 2026</h2>
-        <div className={styles.galleryGrid}>
+        <div className={galleryStyles.galleryGrid}>
           {galleryImages.map((image, index) => (
-            <div className={styles.galleryCard} key={image}>
+            <div className={galleryStyles.galleryCard} key={image}>
               <Image src={image} alt={`Registro da Romaria ${index + 1}`} width={400} height={300} />
             </div>
           ))}
