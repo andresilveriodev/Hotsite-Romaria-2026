@@ -1,8 +1,14 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "História da Romaria - Romaria do Divino Pai Eterno",
+  description: "Conheça a trajetória da fé e devoção ao Divino Pai Eterno em Trindade, de 1840 até os dias de hoje.",
+};
 
 type HistoryEntry = {
   year: string;
