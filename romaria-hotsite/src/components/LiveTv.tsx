@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Hls from "hls.js";
 
 const PORTAL_PAIETERNO_LIVE_URL = "https://video09.logicahost.com.br/paieterno/paieterno/playlist.m3u8";
 
@@ -25,38 +24,39 @@ export default function LiveTv({
     const video = videoRef.current;
     if (!video || !src) return;
 
-    const tryPlay = () => {
-      video
-        .play()
-        .catch(() => {
-          // Ignore autoplay rejections and keep controls available for manual start.
+    let hls: any;
+
+    const initHls = async () => {
+      const Hls = (await import("hls.js")).default;
+      
+      const tryPlay = () => {
+        video.play().catch(() => {});
+      };
+
+      if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = src;
+        video.addEventListener("loadedmetadata", tryPlay);
+        return;
+      }
+
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          autoStartLoad: true,
+          enableWorker: true,
         });
+
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, tryPlay);
+      }
     };
 
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = src;
-      video.addEventListener("loadedmetadata", tryPlay);
-
-      return () => {
-        video.removeEventListener("loadedmetadata", tryPlay);
-      };
-    }
-
-    if (!Hls.isSupported()) {
-      return;
-    }
-
-    const hls = new Hls({
-      autoStartLoad: true,
-      enableWorker: true,
-    });
-
-    hls.loadSource(src);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, tryPlay);
+    initHls();
 
     return () => {
-      hls.destroy();
+      if (hls) {
+        hls.destroy();
+      }
     };
   }, [src]);
 
