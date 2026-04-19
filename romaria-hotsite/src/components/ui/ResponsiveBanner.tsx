@@ -10,6 +10,7 @@ type ResponsiveBannerProps = {
   marginTop?: number;
   openInNewTab?: boolean;
   priority?: boolean;
+  rounded?: boolean;
 };
 
 export default function ResponsiveBanner({
@@ -20,6 +21,7 @@ export default function ResponsiveBanner({
   marginTop,
   openInNewTab,
   priority = false,
+  rounded = false,
 }: ResponsiveBannerProps) {
   const content = (
     <div
@@ -29,7 +31,7 @@ export default function ResponsiveBanner({
       <Image
         src={desktopSrc}
         alt={alt}
-        className={styles.desktopImage}
+        className={`${styles.desktopImage} ${rounded ? styles.rounded : ""}`}
         width={1600}
         height={720}
         sizes="100vw"
@@ -38,7 +40,7 @@ export default function ResponsiveBanner({
       <Image
         src={mobileSrc}
         alt={alt}
-        className={styles.mobileImage}
+        className={`${styles.mobileImage} ${rounded ? styles.rounded : ""}`}
         width={900}
         height={1200}
         sizes="100vw"

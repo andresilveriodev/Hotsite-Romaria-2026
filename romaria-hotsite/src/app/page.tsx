@@ -95,7 +95,16 @@ export default function Home() {
       />
 
 
-      <AdSection type="diamond" />
+      <div className={styles.container} style={{ marginTop: '72px' }}>
+        <ResponsiveBanner
+          desktopSrc="/figma-assets/banners/banner_loja_pai_eterno.png"
+          mobileSrc="/figma-assets/banners/banner_loja_pai_eterno_mobile.png"
+          alt="Loja Santuário Pai Eterno"
+          href="https://www.lojasantuariopaieterno.com.br"
+          openInNewTab
+          rounded
+        />
+      </div>
 
 
       {SHOW_GALERIA ? <GallerySection showFormularioEnvioFoto={SHOW_FORMULARIO_ENVIO_FOTO} /> : null}

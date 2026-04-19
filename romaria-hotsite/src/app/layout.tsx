@@ -46,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${ebGaramond.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${ebGaramond.variable}`} suppressHydrationWarning>
       <head>
         {/* Preconnect hints for better performance */}
         <link rel="preconnect" href="https://maps.googleapis.com" />
