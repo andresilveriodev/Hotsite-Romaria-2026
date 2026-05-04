@@ -20,7 +20,10 @@ export default function VideoSection() {
           <div className={styles.mediaCard}>
             <h3>Hino da Romaria</h3>
             <div className={styles.embedFrame}>
-              <VideoFacade videoId="RRQLWcjyD7M" title="Hino da Romaria" />
+              <VideoFacade 
+                videoId="dzwhwW0WFWg" 
+                title="Clipe Romaria" 
+              />
             </div>
           </div>
         </div>
