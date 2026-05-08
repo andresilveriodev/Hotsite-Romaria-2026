@@ -143,6 +143,37 @@
   opacity: 0.8;
 }
 
+.loadMoreContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.loadMoreButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border: 2px solid #7e1d1a;
+  border-radius: 999px;
+  background: transparent;
+  color: #7e1d1a;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.loadMoreButton:hover {
+  background: #7e1d1a;
+  color: #fff;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+}
+
 @media (max-width: 640px) {
   .container {
     padding: 0 16px;

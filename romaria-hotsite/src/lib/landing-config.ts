@@ -1,4 +1,4 @@
-export const SHOW_PROGRAMACAO = false;
+export const SHOW_PROGRAMACAO = true;
 export const SHOW_FORMULARIO_ENVIO_FOTO = false;
 export const SHOW_GALERIA = false;
 

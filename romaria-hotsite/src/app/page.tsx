@@ -26,7 +26,7 @@ import styles from "./page.module.css";
 
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("daily");
   const [selectedDate, setSelectedDate] = useState("26-06");
   const [activeMapId, setActiveMapId] = useState(touristPoints[0]?.id ?? "");
   const [openModal, setOpenModal] = useState<ModalKey>(null);
@@ -67,7 +67,7 @@ export default function Home() {
           onSelectCategory={setSelectedCategory}
           onSelectDate={setSelectedDate}
         />
-      ) : null}
+      ) : true}
 
       <VideoSection />
       <ResponsiveBanner
