@@ -400,7 +400,17 @@ export const allScheduleEntries: ScheduleEntry[] = [
     day: "Sexta-feira",
     time: "19h30",
     title:
-      "Participação das Paróquias do Vicariato Nossa Senhora Aparecida da Arquidiocese de Goiânia",
+      "Participação das pastorais sociais do Vicariato para a Solidariedade da Arquidiocese de Goiânia",
+    location: "Praça do Santuário Basílica",
+    details: "",
+    category: "special",
+  },
+  {
+    id: "especial-26-06-7",
+    date: "26/06",
+    day: "Sexta-feira",
+    time: "19h30",
+    title: "Participação dos internos da Vila São Cottolengo",
     location: "Praça do Santuário Basílica",
     details: "",
     category: "special",
